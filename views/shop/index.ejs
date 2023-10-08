@@ -85,7 +85,7 @@
           >
             <h6 class="mt-2 mb-2"><%= product.title %></h6></a
           >
-          <div class="price">₹ <%= product.price %></div>
+          <div class="price">₹ <%= (product.price).toLocaleString() %></div>
         </div>
         <% if(product.available) {%>
         <a

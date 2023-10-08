@@ -50,7 +50,7 @@
     <% for(let i=0; i<3; i++){ %>
     <div class="col-lg-3 col-md-3 col-sm-12 text-center ml-2">
       <a class="title-link" href="/products/<%=categories[i].slug%>">
-        <img src="images/dept<%=i%>.jpg" alt="category" class="circle-img" />
+        <img src="images/dept<%=i%>.png" alt="category" class="circle-img" />
         <h4 class="mb-3 mt-3"><%=categories[i].title%></h4>
       </a>
     </div>
@@ -114,7 +114,7 @@
               >
                 <img
                   src="<%= products[i].imagePath %>"
-                  alt="Bag"
+                  alt="iPhone"
                   class="img-fluid"
               /></a>
               <div class="product-info">
@@ -124,7 +124,7 @@
                 >
                   <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
                 >
-                <div class="price">₹ <%= products[i].price %></div>
+                <div class="price">₹ <%= (products[i].price).toLocaleString() %></div>
               </div>
               <% if(products[i].available) {%>
               <a
@@ -160,7 +160,7 @@
               >
                 <img
                   src="<%= products[i].imagePath %>"
-                  alt="Bag"
+                  alt="iPhone"
                   class="img-fluid"
               /></a>
               <div class="product-info">
@@ -170,7 +170,7 @@
                 >
                   <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
                 >
-                <div class="price">₹ <%= products[i].price %></div>
+                <div class="price">₹ <%= (products[i].price).toLocaleString() %></div>
               </div>
               <% if(products[i].available) {%>
               <a
@@ -206,7 +206,7 @@
               >
                 <img
                   src="<%= products[i].imagePath %>"
-                  alt="Bag"
+                  alt="iPhone"
                   class="img-fluid"
               /></a>
               <div class="product-info">
@@ -216,7 +216,7 @@
                 >
                   <h6 class="mt-2 mb-2"><%= products[i].title %></h6></a
                 >
-                <div class="price">₹ <%= products[i].price %></div>
+                <div class="price">₹ <%= (products[i].price).toLocaleString() %></div>
               </div>
               <% if(products[i].available) {%>
               <a

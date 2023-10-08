@@ -308,4 +308,48 @@ async function productsFromCart(cart) {
     return products;
 }
 
+router.get('/invoice/:id', middleware.isLoggedIn, async (req, res) => {
+    const successMsg = req.flash('success')[0];
+    const errorMsg = req.flash('error')[0];
+    try {
+        var order = await Order.findById(req.params.id).populate('user');
+        var invoiceno = order._id.toString().slice(-6).toUpperCase();
+
+        const months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+        ];
+        var year = order.createdAt.getFullYear();
+        var month = months[order.createdAt.getMonth()];
+        var date = order.createdAt.getDate();
+        var invoiceDate = date + ' ' + month + ', ' + year;
+
+        if (order.user._id.toString() == req.user._id.toString()) {
+            res.render('shop/invoice', {
+                invoiceno: invoiceno,
+                invoiceDate: invoiceDate,
+                order: order,
+                errorMsg,
+                successMsg,
+                pageName: `Invoice - #${invoiceno}`,
+            });
+        } else {
+            res.redirect('/');
+        }
+    } catch (err) {
+        console.log(err);
+        return res.redirect('/');
+    }
+});
+
 module.exports = router;
