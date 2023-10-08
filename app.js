@@ -83,9 +83,11 @@ app.use(function (req, res, next) {
 //routes config
 const indexRouter = require('./routes/index')
 const pagesRouter = require('./routes/pages');
+const usersRouter = require('./routes/user');
 
 app.use('/', indexRouter)
 app.use('/pages', pagesRouter);
+app.use('/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
