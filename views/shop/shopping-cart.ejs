@@ -51,16 +51,16 @@
                         <a href="/add-to-cart/<%=product._id%>"><i class="fa fa-plus-square" aria-hidden="true"></i>
                         </a>
                       </td>
-                      <td>₹ <%= product.price %>
+                      <td style="width: 10%;">₹ <%= (product.price).toLocaleString() %>
                       </td>
-                      <td>
+                      <td style="width: 15%;">
                         ₹ <%= product.fixTax %> + ₹ <%= (product.varTax).toFixed(2) %>
                       </td>
-                      <td>₹ <%= (product.totalPrice).toFixed(2) %>
+                      <td style="width: 10%;">₹ <%= (product.totalPrice).toFixed(2) %>
                       </td>
                       <td>
                         <a href="/removeAll/<%=product._id%>" class="btn btn-danger btn-sm button-style-danger">Remove
-                          all</a>
+                          All</a>
                       </td>
                     </tr>
                     <% } %>

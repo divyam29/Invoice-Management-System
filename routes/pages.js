@@ -1,41 +1,39 @@
-const express = require('express')
-const csrf = require('csurf')
-const nodemailer = require('nodemailer')
-const router = express.Router()
-
+const express = require('express');
+const csrf = require('csurf');
+const nodemailer = require('nodemailer');
+const router = express.Router();
 const {
     userContactUsValidationRules,
     validateContactUs,
-} = require('../config/validator')
-
-const csrfProtection = csrf()
-router.use(csrfProtection)
+} = require('../config/validator');
+const csrfProtection = csrf();
+router.use(csrfProtection);
 
 //GET: display abous us page
 router.get('/about-us', (req, res) => {
     res.render('pages/about-us', {
         pageName: 'About Us',
-    })
-})
+    });
+});
 
 //GET: display shipping policy page
 router.get('/shipping-policy', (req, res) => {
     res.render('pages/shipping-policy', {
         pageName: 'Shipping Policy',
-    })
-})
+    });
+});
 
 //GET: display contact us page and form with csrf tokens
 router.get('/contact-us', (req, res) => {
-    const successMsg = req.flash('success')[0]
-    const errorMsg = req.flash('error')
+    const successMsg = req.flash('success')[0];
+    const errorMsg = req.flash('error');
     res.render('pages/contact-us', {
         pageName: 'Contact Us',
         csrfToken: req.csrfToken(),
         successMsg,
         errorMsg,
-    })
-})
+    });
+});
 
 //POST: handle contact us form logic using nodemailer
 router.post(
@@ -48,14 +46,14 @@ router.post(
             port: 587,
             secure: false,
             auth: {
-                // email and password
+                // company's email and password
                 user: process.env.GMAIL_EMAIL,
                 pass: process.env.GMAIL_PASSWORD,
             },
             tls: {
                 rejectUnauthorized: false,
             },
-        })
+        });
 
         // email options
         const mailOpts = {
@@ -72,7 +70,7 @@ router.post(
       ${req.body.message}
       </div>
       `,
-        }
+        };
 
         // send the email
         smtpTrans.sendMail(mailOpts, (error, response) => {
@@ -80,17 +78,17 @@ router.post(
                 req.flash(
                     'error',
                     'An error occured... Please check your internet connection and try again later'
-                )
-                return res.redirect('/pages/contact-us')
+                );
+                return res.redirect('/pages/contact-us');
             } else {
                 req.flash(
                     'success',
                     'Email sent successfully! Thanks for your inquiry.'
-                )
-                return res.redirect('/pages/contact-us')
+                );
+                return res.redirect('/pages/contact-us');
             }
-        })
+        });
     }
-)
+);
 
-module.exports = router
+module.exports = router;
