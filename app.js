@@ -11,6 +11,7 @@ const flash = require('connect-flash')
 const Category = require('./models/category')
 var MongoStore = require('connect-mongo')(session)
 const connectDB = require('./config/db')
+const favicon = require('serve-favicon'); 
 
 const app = express()
 require('./config/passport')
@@ -21,8 +22,7 @@ connectDB()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-// admin route
-
+app.use(favicon(__dirname + '/public/images/favicon-32x32.png')); 
 
 app.use(logger('dev'))
 app.use(express.json())
@@ -82,13 +82,10 @@ app.use(function (req, res, next) {
 
 //routes config
 const indexRouter = require('./routes/index')
-// const productsRouter = require('./routes/products')
-// const usersRouter = require('./routes/user')
-// const pagesRouter = require('./routes/pages')
-// app.use('/products', productsRouter)
-// app.use('/user', usersRouter)
-// app.use('/pages', pagesRouter)
+const pagesRouter = require('./routes/pages');
+
 app.use('/', indexRouter)
+app.use('/pages', pagesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
