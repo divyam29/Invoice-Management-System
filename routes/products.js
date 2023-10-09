@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     let page = parseInt(req.query.page) || 1
     try {
         const products = await Product.find({})
-            .sort('-createdAt')
+            .sort('createdAt')
             .skip(perPage * page - perPage)
             .limit(perPage)
             .populate('category')

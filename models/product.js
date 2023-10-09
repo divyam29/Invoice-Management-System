@@ -27,10 +27,6 @@ const productSchema = Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
   },
-//  !remove manufacturer
-  // manufacturer: {
-  //   type: String,
-  // },
   available: {
     type: Boolean,
     required: true,
