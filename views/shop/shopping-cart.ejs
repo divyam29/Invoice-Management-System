@@ -54,7 +54,30 @@
                       <td style="width: 10%;">₹ <%= (product.price).toLocaleString() %>
                       </td>
                       <td style="width: 15%;">
-                        ₹ <%= product.fixTax %> + ₹ <%= (product.varTax).toFixed(2) %>
+                        <p class="mb-0">₹ <%= product.fixTax %> + ₹ <%= (product.varTax).toFixed(2) %>
+                        </p>
+                        <p class="mb-0 ml-3 text-left" style="font-size:13px; color: rgb(170, 170, 170);">
+                          <% if(product.type){ %>
+                            Tax PC: ₹ <%= product.fixTax %>
+                              <br>
+                              <% if(product.price>1000 &&
+                                product.price<=5000){%>
+                                  Tax PA: ( 12% ): ₹ <%= product.varTax %>
+
+                                    <%} else {%>
+                                      Tax PB ( 18% ): ₹ <%= product.varTax %>
+                                        <% } %>
+                                          <% } else { %> Tax SC: ₹ <%= product.fixTax %>
+                                              <br>
+                                              <% if(product.price>1000 &&
+                                                product.price<=5000){%>
+                                                  Tax SA: ( 10% ): ₹ <%= product.varTax %>
+
+                                                    <%} else {%>
+                                                      Tax SB: ( 15% ): ₹ <%= product.varTax %>
+                                                        <% }} %>
+
+                        </p>
                       </td>
                       <td style="width: 10%;">₹ <%= (product.totalPrice).toFixed(2) %>
                       </td>
