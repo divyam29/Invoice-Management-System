@@ -82,7 +82,9 @@ router.get('/add-to-cart/:id', async (req, res) => {
 
             cart.items.push({
                 productId: productId,
+                type: product.type,
                 qty: 1,
+                ogprice: product.price,
                 varTax: varTax,
                 fixTax: fixTax,
                 onePrice: totalPrice,

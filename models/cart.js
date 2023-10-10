@@ -7,7 +7,15 @@ const cartSchema = new mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Product',
             },
+            type: {
+                type: Boolean,
+                required: true,
+            },
             qty: {
+                type: Number,
+                default: 0,
+            },
+            ogprice: {
                 type: Number,
                 default: 0,
             },

@@ -68,9 +68,9 @@
                                             <tr>
                                                 <th style="width: 70px;">No.</th>
                                                 <th>Item</th>
-                                                <th>Quantity</th>
                                                 <th>Price</th>
                                                 <th>Tax (Per Piece)</th>
+                                                <th>Quantity</th>
                                                 <th class="text-right" style="width: 120px;">Total</th>
                                             </tr>
                                         </thead><!-- end thead -->
@@ -90,13 +90,41 @@
                                                             </p>
                                                         </div>
                                                     </td>
+                                                    <td>₹ <%= (order.cart.items[i-1].ogprice).toLocaleString() %>
+                                                    </td>
+                                                    <td >
+                                                        <p class="mb-0">₹ <%= order.cart.items[i-1].fixTax %> + ₹ <%=
+                                                                    order.cart.items[i-1].varTax %>
+                                                        </p>
+                                                        <p class="text-muted mb-0" style="font-size:13px;">
+                                                        <% if(order.cart.items[i-1].type){ %>
+                                                            Tax PC: ₹ <%= order.cart.items[i-1].fixTax %>
+                                                                <br>
+                                                            <% if(order.cart.items[i-1].ogprice>1000 &&
+                                                                order.cart.items[i-1].ogprice<=5000){%>
+                                                                Tax PA: ( 12% ): ₹ <%=
+                                                                    order.cart.items[i-1].varTax %>
+
+                                                            <%} else {%>
+                                                                Tax PB ( 18% ): ₹ <%=
+                                                                    order.cart.items[i-1].varTax %>
+                                                                    <% } %>
+                                                        <%  } else { %> Tax SC: ₹ <%= order.cart.items[i-1].fixTax %>
+                                                        <br>
+                                                            <% if(order.cart.items[i-1].ogprice>1000 &&
+                                                                order.cart.items[i-1].ogprice<=5000){%>
+                                                                    Tax SA: ( 10% ): ₹ <%=
+                                                                        order.cart.items[i-1].varTax %>
+
+                                                            <%} else {%>
+                                                                Tax SB: ( 15% ): ₹ <%=
+                                                                    order.cart.items[i-1].varTax %>
+                                                                <% }} %>
+
+                                                        </p>
+                                                        </td>
                                                     <td>
                                                         <%= order.cart.items[i-1].qty %>
-                                                    </td>
-                                                    <td>₹ <%= (order.cart.items[i-1].price).toLocaleString() %>
-                                                    </td>
-                                                    <td>₹ <%= order.cart.items[i-1].fixTax %> + ₹ <%=
-                                                                order.cart.items[i-1].varTax %>
                                                     </td>
                                                     <td class="text-right">₹ <%=
                                                             (order.cart.items[i-1].price).toLocaleString() %>
@@ -105,7 +133,7 @@
                                                 <% } %>
                                                     <!-- end tr -->
                                                     <tr>
-                                                        <th scope="row" colspan="5" class="border-0 text-right">Total
+                                                        <th scope="row" colspan="5" class="border-0 text-right">Total: 
                                                         </th>
                                                         <td class="border-0 text-right">
                                                             <h4 class="m-0 fw-semibold">₹ <%=
@@ -119,6 +147,7 @@
                                 </div><!-- end table responsive -->
                                 <div class="d-print-none mt-4">
                                     <div class="float-right">
+                                        <button class="btn btn-primary w-lg" onclick="window.print()"><i class="fa fa-solid fa-print"></i></button>
                                         <a href="/user/profile" class="btn btn-danger w-md">Back</a>
                                     </div>
                                 </div>
