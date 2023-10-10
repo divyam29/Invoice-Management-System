@@ -5,7 +5,8 @@ This is a copy of the Apple store where you can find different types of Apple pr
 
 ## Links: 
 -	Deployed website: https://invoice-management-ugc3.onrender.com/
--	GitHub: https://github.com/divyam29/Invoice-Management-System-Plotline 
+-	GitHub: https://github.com/divyam29/Invoice-Management-System-Plotline
+-	Demo Video: https://bit.ly/3RRHCea
 
 ## Credentials: 
 -	### Test user: 
