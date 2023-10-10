@@ -112,7 +112,7 @@
                                                         <%  } else { %> Tax SC: ₹ <%= order.cart.items[i-1].fixTax %>
                                                         <br>
                                                             <% if(order.cart.items[i-1].ogprice>1000 &&
-                                                                order.cart.items[i-1].ogprice<=5000){%>
+                                                                order.cart.items[i-1].ogprice<=8000){%>
                                                                     Tax SA: ( 10% ): ₹ <%=
                                                                         order.cart.items[i-1].varTax %>
 
@@ -133,7 +133,7 @@
                                                 <% } %>
                                                     <!-- end tr -->
                                                     <tr>
-                                                        <th scope="row" colspan="5" class="border-0 text-right">Total: 
+                                                        <th scope="row" colspan="5" class="border-0 text-right"><h4>Total:</h4> 
                                                         </th>
                                                         <td class="border-0 text-right">
                                                             <h4 class="m-0 fw-semibold">₹ <%=

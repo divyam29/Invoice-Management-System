@@ -44,7 +44,7 @@ router.get('/:slug', async (req, res) => {
     try {
         const foundCategory = await Category.findOne({ slug: req.params.slug })
         const allProducts = await Product.find({ category: foundCategory.id })
-            .sort('-createdAt')
+            .sort('-price')
             .skip(perPage * page - perPage)
             .limit(perPage)
             .populate('category')
