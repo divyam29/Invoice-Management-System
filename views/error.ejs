@@ -1,3 +1,134 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% if (pageName) { %>
+        <title>Apple | <%= pageName %>
+        </title>
+        <%} else {%>
+            <title>Shopping Cart</title>
+            <% } %>
+                <script src="https://code.jquery.com/jquery-3.5.1.js"
+                    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                    crossorigin="anonymous"></script>
+
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                    crossorigin="anonymous" />
+
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                    crossorigin="anonymous"></script>
+
+                <script src="https://kit.fontawesome.com/91abd10b8f.js" crossorigin="anonymous"></script>
+
+                <link rel="stylesheet" href="/stylesheets/style.css" />
+                <link rel="stylesheet" href="/stylesheets/error.css" />
+
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="page-container" style="background-color: #1D1D1F;">
+        <div id="content-wrap">
+            <div class="row nav-container mx-auto" style="background-color: #181819;">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                </div>
+
+                <div class=" col-md-4 col-sm-12 col-xs-12 logo-container text-center">
+                    <a href="/">
+                        <img class="logo-img img-fluid" src="/images/shop-icon.png" alt="logo" />
+                    </a>
+                    <!-- <h4 class="logo-title">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4> -->
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-xs-12 right-nav">
+                    <ul>
+                        <li>
+                            <a href="/shopping-cart">
+                                <i class="fas fa-shopping-cart" style="color: #f5f5f7;"></i>
+                                <% if(session.cart) { %>
+                                    <span class="badge badge-pill badge-info"
+                                        style="background-color: #f5f5f7; color: black;">
+                                        <%= session.cart.totalQty %>
+                                    </span>
+                                    <% } else { %>
+                                        <span class="badge badge-pill badge-info"
+                                            style="background-color: #f5f5f7; color: black;">0</span>
+                                        <% } %>
+                            </a>
+                        </li>
+                        <% if (login) { %>
+                            <li>
+                                <a class="dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i> <span>Welcome
+                                        <%=currentUser.username%>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item header-drop" href="/user/profile">User Account</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item header-drop" href="/user/logout">Logout</a>
+                                </div>
+                            </li>
+                            <% } else {%>
+                                <li>
+                                    <a href="/user/signup" style="color: #f5f5f7;"> Sign Up</a>
+                                </li>
+                                <li>
+                                    <a href="/user/signin" style="color: #f5f5f7;"> Sign In</a>
+                                </li>
+                                <% }%>
+                    </ul>
+                </div>
+            </div>
+            <nav class="navbar navbar-expand-md navbar-custom navbar-dark" style="background-color: #1D1D1F;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse mx-auto order-0" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li <% if (pageName==="All Products" ) { %>
+                            class="nav-item active"
+                            <%} else {%>
+                                class="nav-item"
+                                <%} %>
+                                    >
+                                    <a class="nav-link" href="/products/">Store</a>
+                        </li>
+
+                        <% if (categories) { %>
+                            <% categories.forEach( category=> { %>
+                                <li <% if (pageName===category.title) { %>
+                                    class="nav-item active"
+                                    <% } else { %>
+                                        class="nav-item"
+                                        <% } %>
+                                            >
+                                            <a class="nav-link" href="/products/<%= category.slug %>">
+                                                <%= category.title %>
+                                            </a>
+                                </li>
+                                <% }) %>
+                                    <% } %>
+                    </ul>
+                </div>
+            </nav>
+
+
+            <div id="notfound">
+                <div class="notfound">
+                    <div class="notfound-404">
+                        <h1>404</h1>
+                        <h2>Page not found</h2>
+                    </div>
+                    <a href="/">Homepage</a>
+                </div>
+            </div>
+
+            <%- include ./partials/footer %>
