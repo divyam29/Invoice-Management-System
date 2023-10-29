@@ -1,5 +1,4 @@
 # Invoice Management System
-## Plotline Problem Statement Submission
 
 This is a copy of the Apple store where you can find different types of Apple products and services. You can pick the ones you like, put them in your virtual shopping cart, and then complete your order. Afterwards, you'll see a detailed invoice that includes all the taxes for your purchase.
 
